@@ -192,10 +192,6 @@ func Apim2Deployment(apimanager *apimv1alpha1.APIManager) *appsv1.Deployment {
 									SubPath:"deployment.toml",
 								},
 								//{
-								//	Name: "mysql-jdbc-driver",
-								//	MountPath: "/home/wso2carbon/wso2-artifact-volume/repository/components/lib",
-								//},
-								//{
 								//	Name: "wso2am-pattern-1-am-conf-entrypoint",
 								//	MountPath: "/home/wso2carbon/docker-entrypoint.sh",
 								//	SubPath:"docker-entrypoint.sh",
@@ -246,16 +242,6 @@ func Apim2Deployment(apimanager *apimv1alpha1.APIManager) *appsv1.Deployment {
 						//				Name: "wso2am-pattern-1-am-conf-entrypoint",
 						//			},
 						//			DefaultMode:&defaultmode,
-						//		},
-						//	},
-						//},
-						//{
-						//	Name: "mysql-jdbc-driver",
-						//	VolumeSource: corev1.VolumeSource{
-						//		ConfigMap: &corev1.ConfigMapVolumeSource{
-						//			LocalObjectReference: corev1.LocalObjectReference{
-						//				Name: "mysql-jdbc-driver-cm",
-						//			},
 						//		},
 						//	},
 						//},
