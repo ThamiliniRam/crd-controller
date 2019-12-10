@@ -19,7 +19,6 @@ func Apim2Service(apimanager *apimv1alpha1.APIManager) *corev1.Service {
 	}
 	return &corev1.Service{
 		ObjectMeta: metav1.ObjectMeta{
-			// Name: apimanager.Spec.ServiceName,
 			Name:      "apim-2-svc",
 			Namespace: apimanager.Namespace,
 			OwnerReferences: []metav1.OwnerReference{
@@ -28,43 +27,37 @@ func Apim2Service(apimanager *apimv1alpha1.APIManager) *corev1.Service {
 		},
 		Spec: corev1.ServiceSpec{
 			Selector: labels,
-			Type:     "NodePort",
-			ExternalIPs: []string{"192.168.99.101"},
+			Type:     "LoadBalancer",
 			Ports: []corev1.ServicePort{
 				{
 					Name:       "pass-through-http",
 					Protocol:   corev1.ProtocolTCP,
 					Port:       30838,
 					TargetPort: intstr.IntOrString{Type: intstr.Int, IntVal: 30838},
-					NodePort:   32026,
 				},
 				{
 					Name:       "pass-through-https",
 					Protocol:   corev1.ProtocolTCP,
 					Port:       30801,
 					TargetPort: intstr.IntOrString{Type: intstr.Int, IntVal: 30801},
-					NodePort:   32027,
 				},
 				{
 					Name:       "servlet-http",
 					Protocol:   corev1.ProtocolTCP,
 					Port:       32321,
 					TargetPort: intstr.IntOrString{Type: intstr.Int, IntVal: 32321},
-					NodePort:   32028,
 				},
 				{
 					Name:       "servlet-https",
 					Protocol:   corev1.ProtocolTCP,
 					Port:       32001,
 					TargetPort: intstr.IntOrString{Type: intstr.Int, IntVal: 32001},
-					NodePort:   32029,
 				},
 				{
 					Name:       "jms-provider",
 					Protocol:   corev1.ProtocolTCP,
 					Port:       28230,
 					TargetPort: intstr.IntOrString{Type: intstr.Int, IntVal: 28230},
-					NodePort:   32030,
 				},
 				//{
 				//	Name:       "binary",
